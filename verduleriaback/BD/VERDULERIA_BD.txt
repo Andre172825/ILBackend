@@ -1,0 +1,33 @@
+CREATE DATABASE verduleria;
+USE verduleria;
+
+CREATE TABLE CATEGORY (
+IDCATEGORY			INT AUTO_INCREMENT,
+NAMECATEGORY			VARCHAR(100) NOT NULL,
+STATUSCATEGORY			INT NOT NULL,
+PRIMARY KEY (IDCATEGORY)
+);
+
+CREATE TABLE PRODUCT (
+IDPRODUCT 			INT AUTO_INCREMENT,
+NAMEPRODUCT 		VARCHAR(100) NOT NULL,
+PRICEPRODUCT 		DECIMAL(16,2) NOT NULL,
+STOCKPRODUCT 		INT NOT NULL,
+STATUSPRODUCT 		INT NOT NULL,
+IMAGEPRODUCT		VARCHAR(300),
+IDCATEGORY   		INT,
+PRIMARY KEY (IDPRODUCT),
+FOREIGN KEY (IDCATEGORY) REFERENCES CATEGORY(IDCATEGORY)
+);
+
+INSERT INTO CATEGORY(NAMECATEGORY, STATUSCATEGORY)
+VALUES ('FRUTAS',1)
+	  ,('VERDURAS',2);
+
+INSERT INTO PRODUCT(NAMEPRODUCT, PRICEPRODUCT, STOCKPRODUCT, STATUSPRODUCT, IMAGEPRODUCT, IDCATEGORY)
+VALUES ('FRESA',5.25,20,1,'https://paraguanaexpress.com/wp-content/uploads/2020/06/fresa.jpg',1)
+      ,('MANDARINA',15.00,5,1, 'https://s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2018/10/04173718/mandarina-02.jpg',1)
+      ,('PLÁTANO',10.00,10,1, 'https://cdnmundo1.img.sputniknews.com/img/07e5/02/1a/1109291020_0:14:1920:1094_1920x0_80_0_0_bd700f621eb12237367d326ad18f6931.jpg',1)
+      ,('CEBOLLA',10.00,20,1, 'https://cdnmundo1.img.sputniknews.com/img/07e5/04/08/1110939442_0:121:1920:1201_1920x0_80_0_0_7aec9791d652bcb407f61599f3529976.jpg',2)
+      ,('AJO',10.00,5,1, 'http://resizer.sevilla.abc.es/resizer/resizer.php?imagen=https://sevilla.abc.es/gurme//wp-content/uploads/sites/24/2011/04/beneficiosdelajo.jpg&nuevoancho=1920',2)
+      ,('TOMATE',10.00,10,1, 'http://resizer.sevilla.abc.es/resizer/resizer.php?imagen=https://sevilla.abc.es/gurme//wp-content/uploads/sites/24/2016/07/tomate-un-super-alimento.jpg&nuevoancho=1920',2);
